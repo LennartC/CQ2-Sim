@@ -1,0 +1,193 @@
+/*
+** general portlet styles (elements in the quickbar)
+*/
+.portlet {
+    border: none;
+    padding: 0;
+    float: none;
+    overflow: hidden;
+}
+.portlet h4 {
+    font-size: 95%;
+    font-weight: normal;
+    white-space: nowrap;
+}
+.portlet h5 {
+    background: transparent;
+    padding: 0 1em 0 .5em;
+    display: inline;
+    height: 1em;
+    text-transform: lowercase;
+    font-size: 91%;
+    font-weight: normal;
+    white-space: nowrap;
+}
+.portlet h6 {
+    background: #ffae2e;
+    border: 1px solid #2f6fab;
+    border-style: solid solid none solid;
+    padding: 0 1em 0 1em;
+    text-transform: lowercase;
+    display: block;
+    font-size: 1em;
+    height: 1.2em;
+    font-weight: normal;
+    white-space: nowrap;
+}
+.pBody {
+    font-size: 95%;
+    border-collapse: collapse;
+    border: 1px solid #aaa;
+    margin: 10px;
+    padding-right: 10px;
+}
+.portlet h1,
+.portlet h2,
+.portlet h3,
+.portlet h4 {
+    margin: 0;
+    padding: 3px;
+}
+.portlet ul {
+    line-height: 1.5em;
+    list-style-type: square;
+    list-style-image: url(bullet.gif);
+    font-size: 95%;
+}
+
+/*
+** Main menu properties
+*/
+
+#p-main {
+    float: left; 
+    width: 172px; 
+    background: #000; 
+}
+
+#p-content {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 8pt;
+    margin-left:185px; 
+    margin-right:10px; 
+    margin-top: 5px;
+    height: 1%;
+}
+
+#p-news {
+    margin-left:175px; 
+    margin-right:0px; 
+    height: 1%;
+}
+
+#footer {
+    margin: 2em 0 1em 0;
+    padding: .4em 0 1.2em 0;
+    text-align: center;
+    vertical-align: bottom;
+    font-size: 70%;
+}
+
+.visualClear {
+    clear: both;
+}
+
+
+/* wikitable/pubtable class for skinning normal tables */
+.pubtable, .pubtable table {
+    margin: 1px 0;
+    font-size: 95%;
+    margin: 1px 0;
+}
+
+table.pubtable th, table.pubtable td {
+    padding: 3px;
+    text-align: center;
+}
+
+.pubtopic {
+    text-align: left;
+}
+
+.button {
+  font             : bold 10px Verdana, Arial, Helvetica, sans-serif;
+  color            : #717A8D;
+  background-color : #2E3440;
+  border           : 1px solid #000000;
+}
+
+img.background {
+  width:100%;
+  height:43px; 
+  position:absolute; 
+  z-index:0;
+}
+
+.backgroundtop {
+  position: relative; 
+  z-index:1;
+}
+
+.input, .iframeline {
+    border-width: 1px;
+}
+
+.input2 {
+COLOR: #CCCCCC;
+border-width: 1;
+border-style: solid;
+border-color: #000;
+FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+FONT-SIZE: 8pt;
+TEXT-DECORATION: none;
+}
+.invisible {visibility:hidden;}
+.today {color: black; font-family: sans-serif; font-size: 10pt; font-weight: bold}
+.days {color: navy; font-family: sans-serif; font-size: 10pt; font-weight: bold; text-align: center}
+.dates {color: black; font-family: sans-serif; font-size: 10pt}
+
+.rr_report { font-size: x-small; }
+.rr_userlevel { font-size: x-small; }
+.rr_report { display: inline; }
+.rr_likes { display: inline; }
+div.rr_like { display: block; padding-top: 5px; padding-left: 5px}
+span.rr_like { display: inline; padding-right: 5px; }
+img.rr_like { padding-right: 5px; }
+.rr_links { font-size: x-small; display: inline; padding-right: 5px; padding-left: 5px}
+.rr_comments { display: inline; }
+.rr_comment { padding: 5px 0px 5px 10px; color: #909090; }
+.rr_commenttitle { font-size: x-small; font-weight: bold; }
+.rr_commenttext { padding-left: 20px }
+
+thead { cursor: pointer }
+
+#mage_general		{ padding-top: 10px; padding-left: 10px }
+#mage_cursed		{ padding-top: 10px; padding-left: 10px; font-weight: bold;}
+#mage_latestreveal	{ padding: 10px }
+#topaddlinks		{ padding-top: 5px; }
+TEXTAREA 			{ width: 100%; height: 100px } 
+.message			{ padding: 10px; font-weight: bold;	}
+
+/*
+**
+*/
+  /* allow room for 3 columns */
+  ul.threecols
+  {
+    margin-top: 0;
+    padding-top: 0;
+    width: 48em;
+  }
+
+  /* float & allow room for the widest item */
+  ul.threecols li.threecols
+  {
+    float: left;
+    width: 16em;
+  }
+
+  /* separate the list from subsequent markup */
+  div.threecols
+  {
+    padding: 5px 0 5px 0;
+  }

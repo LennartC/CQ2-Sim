@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+   <tlib-version>1.1</tlib-version>
+   <short-name>zod</short-name>
+   <uri></uri>
+  <tag>
+    <name>AutoCompleteJS</name>
+    <tag-class>be.lacerta.cq2.sim.tags.AutoCompleteJS</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+		<name>type</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+  </tag>
+  
+  <tag>
+    <name>AutoInput</name>
+    <tag-class>be.lacerta.cq2.sim.tags.AutoInput</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+		<name>type</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>name</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>id</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>value</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>size</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>extra</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+  </tag>
+  
+  
+  <tag>
+    <name>SkillTree</name>
+    <tag-class>be.lacerta.cq2.sim.tags.SkillTree</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+		<name>name</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>cq2user</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>cq2class</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+  </tag>
+  <tag>
+    <name>RaidReport</name>
+    <tag-class>be.lacerta.cq2.sim.tags.RaidReport</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+		<name>raid</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+		<!-- type>be.lacerta.cq2.sim.hbn.RaidResult</type-->
+	</attribute>
+    <attribute>
+		<name>user</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+		<!-- type>be.lacerta.cq2.sim.hbn.User</type-->
+	</attribute>
+  </tag>
+  <tag >
+    <name>ProfileLink</name>
+    <tag-class>be.lacerta.cq2.sim.tags.ProfileLink</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+		<name>mage</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>kingdom</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>link</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>cssClass</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>text</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+  </tag>
+  
+  <tag >
+    <name>Title</name>
+    <tag-class>be.lacerta.cq2.sim.tags.Title</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+		<name>title</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>href</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>reftext</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>rel</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    <attribute>
+		<name>subtitle</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+  </tag>
+  
+  	<!-- StringUtils -->
+	<function>
+	    <name>formatDate</name>
+	    <function-class>be.lacerta.cq2.utils.StringUtils</function-class>
+	    <function-signature>
+	        java.lang.String formatDate(java.util.Date)
+	    </function-signature>
+	</function>
+	<function>
+	    <name>getUserLink</name>
+	    <function-class>be.lacerta.cq2.utils.StringUtils</function-class>
+	    <function-signature>
+	        java.lang.String getUserLink(be.lacerta.cq2.sim.hbn.User)
+	    </function-signature>
+	</function>
+	<function>
+	    <name>getDaysOld</name>
+	    <function-class>be.lacerta.cq2.utils.StringUtils</function-class>
+	    <function-signature>
+	        int getDaysOld(java.util.Date)
+	    </function-signature>
+	</function>
+	<function>
+	    <name>convertTimeCount</name>
+	    <function-class>be.lacerta.cq2.utils.StringUtils</function-class>
+	    <function-signature>
+	        String convertTimeCount(long)
+	    </function-signature>
+	</function>
+	
+	<!-- CQ2Functions -->
+	<function>
+	    <name>calcMinimumEnchant</name>
+	    <function-class>be.lacerta.cq2.utils.CQ2Functions</function-class>
+	    <function-signature>
+	        int calcMinimumEnchant(int, int)
+	    </function-signature>
+	</function>
+	
+	<!-- Sim Functions -->
+	<function>
+	    <name>getReveal</name>
+	    <function-class>be.lacerta.cq2.sim.hbn.Reveal</function-class>
+	    <function-signature>
+	        be.lacerta.cq2.sim.hbn.Reveal getRevealByMage(java.lang.String)
+	    </function-signature>
+	</function>
+	<function>
+	    <name>needsHighlight</name>
+	    <function-class>be.lacerta.cq2.sim.hbn.Topic</function-class>
+	    <function-signature>
+	        boolean needsHighlight(be.lacerta.cq2.sim.hbn.Topic, be.lacerta.cq2.sim.hbn.User)
+	    </function-signature>
+	</function>
+	<function>
+	    <name>hasAccess</name>
+	    <function-class>be.lacerta.cq2.sim.hbn.User</function-class>
+	    <function-signature>
+	        boolean hasAccess(be.lacerta.cq2.sim.hbn.User,long)
+	    </function-signature>
+	</function>
+</taglib>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+<!--     <property name="connection.datasource">java:jboss/datasources/SimONNDS</property> -->
+<!--     <property name="connection.datasource">java:jboss/datasources/SimZoDDS</property> -->
+<!--     <property name="connection.datasource">java:jboss/datasources/SimHecateDS</property> -->
+    <property name="connection.datasource">java:jboss/datasources/SimMyrilliaDS</property>
+    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+    
+    <!-- Use the C3P0 connection pool.>
+    <property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+    <property name="hibernate.c3p0.min_size">1</property>
+    <property name="hibernate.c3p0.max_size">15</property>
+    <property name="hibernate.c3p0.timeout">1800</property>
+    <property name="hibernate.c3p0.max_statements">0</property>
+    <property name="hibernate.c3p0.acquire_increment">3</property>
+    <property name="hibernate.c3p0.idle_test_period">300</property-->
+        
+    <property name="current_session_context_class">thread</property>
+<!--     <property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>  -->
+<!-- 	<property name="hibernate.cache.use_query_cache">true</property>  -->
+<!-- 	<property name="hibernate.query.factory_class">org.hibernate.hql.ast.ASTQueryTranslatorFactory</property> -->
+    <property name="hibernate.show_sql">false</property>
+    <!-- mapping files -->
+    <mapping resource="be/lacerta/cq2/sim/hbn/Mapping.hbm.xml" />
+
+</session-factory>
+</hibernate-configuration>

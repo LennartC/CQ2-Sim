@@ -1,0 +1,22 @@
+<serviceGroup>
+<service name="TravelCalc" scope="transportsession" >
+	<Description>
+		Travelcalc Web Service
+	</Description>
+	<messageReceivers>
+		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+		<messageReceiver  mep="http://www.w3.org/2004/08/wsdl/in-out"  class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</messageReceivers>
+	<parameter name="ServiceClass" locked="false">be.lacerta.cq2.soap.TravelCalc</parameter>
+</service>
+<service name="IRCService" scope="transportsession" >
+	<Description>
+		IRC Service
+	</Description>
+	<messageReceivers>
+		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+		<messageReceiver  mep="http://www.w3.org/2004/08/wsdl/in-out"  class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</messageReceivers>
+	<parameter name="ServiceClass" locked="false">be.lacerta.cq2.soap.IRCService</parameter>
+</service>
+</serviceGroup>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="creatures">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="creature" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:key name="key">
+			<xs:selector xpath="creature"/>
+			<xs:field xpath="name"/>
+		</xs:key>
+	</xs:element>
+	<xs:element name="creature">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="name"/>
+				<xs:element ref="class"/>
+				<xs:element ref="race" minOccurs="0"/>
+				<xs:element ref="damage"/>
+				<xs:element ref="health"/>
+				<xs:element ref="skill" minOccurs="0"/>
+				<xs:element ref="FD"/>
+				<xs:element ref="DD"/>
+				<xs:element ref="AD"/>
+				<xs:element ref="ED"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="name" type="xs:string"/>
+	<xs:element name="class" type="xs:NCName"/>
+	<xs:element name="race" type="xs:string"/>
+	<xs:element name="damage" type="xs:integer"/>
+	<xs:element name="health" type="xs:integer"/>
+	<xs:element name="skill" type="xs:integer"/>
+	<xs:element name="FD" type="xs:integer"/>
+	<xs:element name="DD" type="xs:integer"/>
+	<xs:element name="AD" type="xs:integer"/>
+	<xs:element name="ED" type="xs:integer"/>
+</xs:schema>
