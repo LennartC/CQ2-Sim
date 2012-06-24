@@ -15,7 +15,7 @@ Initialize database
 --------
 * Create a MySQL database and import the file "database.sql".
 * Add a first admin user (replace username and md5 password):
-	INSERT INTO `sim_user`  VALUES (1, '<username>', '<md5 password>', 7420738134810, 'Forest', 0, '2012-06-23 18:18:49', 'http://cq2.speedxs.nl/', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 0, 0, NULL, 0);
+	INSERT INTO sim_user  VALUES (1, 'username', 'md5 password', 7420738134810, 'Forest', 0, '2012-06-23 18:18:49', 'http://cq2.speedxs.nl/', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 0, 0, NULL, 0);
 
 Enable MySQL connector in JBoss.
 --------
