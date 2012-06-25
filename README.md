@@ -19,7 +19,7 @@ Initialize database
 
 Enable MySQL connector in JBoss.
 --------
-JBoss doesn't not come with the JDBC driver for MySQL.
+JBoss doesn't come with the JDBC driver for MySQL.
 To add it you can follow the guide on https://community.jboss.org/wiki/DataSourceConfigurationInAS7#Installing_a_JDBC_driver_as_a_module
 
 Add Datasource in JBoss.
