@@ -6,6 +6,14 @@ Created by:
 * Lennart Coopmans
 * Robbin Pellegrims
 
+LICENSE
+=======
+"THE WHISKY-WARE LICENSE" (Revision 1):
+Lennart Coopmans and Robbin Pellegrims wrote these files. As long as you
+retain this notice you can do whatever you want with this stuff. If we meet
+some day, and you think this stuff is worth it, you can buy me a whisky in
+return.
+
 INSTALLATION
 =======
 Installation guide for JBoss AS 7.2 and MySQL 5.
