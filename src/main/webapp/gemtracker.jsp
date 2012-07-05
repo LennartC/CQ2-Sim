@@ -37,21 +37,6 @@
 </div>
 
 <script src="scripts/clock2.js" type="text/javascript"></script>
-<script type="text/javascript">
-	TableKit.Sortable.addSortType(
-		new TableKit.Sortable.Type('timeleft', {
-			pattern : /^(\d*) days, (\d*) hours, (\d*) minutes.*$/,
-			normal : function(v) {
-				var r = v.match(/(\d*) days, (\d*) hours, (\d*) minutes.*/i);
-				var days = parseInt(r[1]);
-				var hours = parseInt(r[2]);
-				var mins = parseInt(r[3]);
-				var total = (((days*24+hours)*60)+mins);
-				return total;
-			}
-		}
-	));
-</script>
 
 
 <table width="100%">

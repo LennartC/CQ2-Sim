@@ -1,4 +1,4 @@
-/*!
+/**
  * jQuery clueTip plugin v1.2.5
  *
  * Date: Sun Jun 10 17:51:13 2012 EDT

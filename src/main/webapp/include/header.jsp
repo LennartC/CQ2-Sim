@@ -19,6 +19,7 @@
 	<script type="text/javascript" src="<%= context %>/scripts/jquery.hoverIntent.js"></script>
 	<script type="text/javascript" src="<%= context %>/scripts/facebox.js"></script>
 	<script type="text/javascript" src="<%= context %>/scripts/jquery.cluetip.js"></script>
+	<script type="text/javascript" src="<%= context %>/scripts/jquery.tablekit.js"></script>
 	<script type="text/javascript">
 	  jQuery(document).ready(function($) {
 	    $('a[rel*=facebox]').facebox({
@@ -36,45 +37,10 @@
 	    });
 	  })
 	</script>
-	<script language="javascript">
-	function invisible(nr)
-	{
-	    if (document.layers)
-	    {
-	        document.layers[nr].visibility = 'hide';
-	    }
-	    else if (document.all)
-	    {
-	        document.all[nr].style.visibility = 'hidden';
-	    }
-	    else if (document.getElementById)
-	    {
-	        document.getElementById(nr).style.visibility = 'hidden';
-	    }
-	}
-	function visible(nr)
-	{
-	    if (document.layers)
-	    {
-	        document.layers[nr].visibility = 'show';
-	    }
-	    else if (document.all)
-	    {
-	        document.all[nr].style.visibility = 'visible';
-	    }
-	    else if (document.getElementById)
-	    {
-	        document.getElementById(nr).style.visibility = 'visible';
-	    }
-	}
-	</script>
 	<script type="text/javascript" src="<%= context %>/dwr/interface/SimAjax.js?version=2"></script>
 	<script type="text/javascript" src="<%= context %>/dwr/engine.js"></script>
-	<script type="text/javascript" src="<%= context %>/scripts/prototype.js"></script>
-	<script type="text/javascript" src="<%= context %>/scripts/scriptaculous.js?version=4"></script>
-	<script type="text/javascript" src="<%= context %>/scripts/fabtabulous.js"></script>
-	<script type="text/javascript" src="<%= context %>/scripts/tablekit.js"></script>
 	<script type="text/javascript" src="<%= CQ2Functions.URL %>images/blue/overlib/overlib.js"></script>
+	<script type="text/javascript" src="<%= context %>/scripts/scripts.js"></script>
 </head>
 <body>
 <div id="overDiv" style="position: absolute; visibility: hidden; z-index: 1000;"></div>

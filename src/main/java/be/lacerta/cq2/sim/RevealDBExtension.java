@@ -1,26 +1,17 @@
 package be.lacerta.cq2.sim;
 
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Map;
 
-import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
-
-import be.lacerta.cq2.sim.hbn.HibernateUtil;
+import be.lacerta.cq2.sim.hbn.Configuration;
 import be.lacerta.cq2.sim.hbn.Kingdom;
 import be.lacerta.cq2.sim.hbn.Mage;
-import be.lacerta.cq2.sim.hbn.News;
-import be.lacerta.cq2.sim.hbn.Note;
 import be.lacerta.cq2.sim.hbn.Reveal;
-import be.lacerta.cq2.sim.hbn.RevealCrit;
-import be.lacerta.cq2.sim.hbn.RevealNote;
-import be.lacerta.cq2.utils.PageParser;
+import be.lacerta.cq2.sim.service.NewsService;
+import be.lacerta.cq2.sim.service.RevealService;
+import be.lacerta.cq2.utils.Condition;
+import be.lacerta.cq2.utils.Pair;
 import be.lacerta.cq2.utils.SimConstants;
 
 public class RevealDBExtension extends AbstractSimExtension {
@@ -36,171 +27,72 @@ public class RevealDBExtension extends AbstractSimExtension {
 		
 		if (post) {
 			if (getString("action").equals("add")) {
-
-				Reveal r = null;
-
-				Matcher match = Pattern.compile(PageParser.REGEXP_PLAYERINFO_REQUIRED,Pattern.DOTALL).matcher(getString("general"));
-				if (match.find()) {
-					if (r==null) {
-						makeOld(match.group(1).replaceAll(",", ""));
-						r = new Reveal();
-					}
-					r.setMage(Mage.getOrCreateMage(match.group(1).replaceAll(",", "")));
-					r.setKingdom(match.group(2).replaceAll(",", ""));
-					r.setMageClass(match.group(3));
-					r.setLevel(Integer.parseInt(match.group(4)));
-					
-				} else if (user.getMage()!=null && !user.getMage().equals("") && user.getKingdom() != null){
-					match = Pattern.compile(PageParser.REGEXP_CHARACTER_REQUIRED,Pattern.DOTALL).matcher(getString("general"));
-					if (match.find()) {
-						if (r==null) {
-							makeOld(user.getMage().getName());
-							r = new Reveal();
+				try {
+					Reveal r = RevealService.INSTANCE.addReveal(user, getString("general"), getString("reveal"));
+				
+					if (r!=null) {
+						NewsService.INSTANCE.addNews(
+								"?page=reveal&mage="+r.getName(),
+								r.getName()+" (L"+r.getLevel()+" "+r.getMageClass()+" mage)",
+								"Reveal",
+								user
+							);
+						
+						if (new Boolean(Configuration.getValue(Configuration.PROPAGETE))) {
+							RevealService.INSTANCE.propagate(r);
 						}
-						r.setMage(user.getMage());
-						r.setKingdom(user.getKingdom());
-						r.setMageClass(match.group(1));
-						r.setLevel(Integer.parseInt(match.group(2)));
 					}
-				}
 				
-				match = Pattern.compile(PageParser.REGEXP_PLAYERINFO_SKILLS,Pattern.DOTALL).matcher(getString("general"));
-				if (match.find()) {
-					r.setForestSkill(Integer.parseInt(match.group(1)));
-					r.setAirSkill(Integer.parseInt(match.group(2)));
-					r.setDeathSkill(Integer.parseInt(match.group(3)));
-					r.setEarthSkill(Integer.parseInt(match.group(4)));
-				} else if (user.getMage()!=null && !user.getMage().equals("") && user.getKingdom() != null){
-					match = Pattern.compile(PageParser.REGEXP_CHARACTER_SKILLS,Pattern.DOTALL).matcher(getString("general"));
-					if (match.find()) {
-						r.setForestSkill(Integer.parseInt(match.group(1)));
-						r.setDeathSkill(Integer.parseInt(match.group(2)));
-						r.setAirSkill(Integer.parseInt(match.group(3)));
-						r.setEarthSkill(Integer.parseInt(match.group(4)));
-					} else {
-						r=null;
-					}
-				} else {
-					r=null;
-				}
-				
-//				if (r==null && !getString("mage").equals("")) {
-//					if (r==null) {
-//						makeOld(getString("mage"));
-//						r = new Reveal();
-//					}
-//					r.setName(getString("mage"));
-//					r.setMageClass(getString("mageClass"));
-//					r.setKingdom(getString("kingdom"));
-//					r.setLevel(getInt("level"));
-//					r.setForestSkill(getInt("forestSkill"));
-//					r.setDeathSkill(getInt("deathSkill"));
-//					r.setAirSkill(getInt("airSkill"));
-//					r.setEarthSkill(getInt("earthSkill"));
-//				}
-				
-				if (r==null) {
-					request.setAttribute("reveal_message", "Unable to add reveal. Could not parse general mage information. Make sure you included the skills when you copy/paste!");
-				} else {
-					updateMageByReveal(r);
-					
-					r.setUser(user);
-					r.setUnparsed(getString("reveal"));
-					r.setTime(new Date());
-					r.saveOrUpdate();
-					r.getCreatures().clear();
-					for (RevealCrit crit : PageParser.parseReveal(r.getUnparsed())) {
-						r.addCreature(crit);
-					}
-					
-					News n = new News();
-					n.setTitle(r.getName()+" (L"+r.getLevel()+" "+r.getMageClass()+" mage)");
-					n.setNewsfor("Reveal");
-					n.setTime(new Date());
-					n.setDirectlink("?page=reveal&mage="+r.getName());
-					n.setUser(user);
-					n.save();
-					
 					publishReavel(r);
+					
 					request.setAttribute("reveal_message", "Reveal added");
 					request.setAttribute("reveal_action",null);
+					
+				} catch (SimException se) {
+					request.setAttribute("reveal_message", "Unable to add reveal: "+se.getMessage());
 				}
+
 			} else if (getString("action").equals("addnote")) {
-				
-				Reveal r = (Reveal)Reveal.get(Reveal.class, getInt("id"));
-				
-				Note n = new Note();
-				n.setDate(new Date());
-				n.setUser(user);
-				n.setNote(getString("note"));
-				n.save();
-				
-				RevealNote rn = new RevealNote();
-				rn.setReveal(r);
-				rn.setNote(n);
-				
-				r.addNote(rn);
-				r.saveOrUpdate();
-				
+				Reveal r = RevealService.INSTANCE.addNote(user, getInt("id"), getString("note"));
 				publishReavel(r);
 			} else if (getString("action").equals("search")) {
-				List<Reveal> reveals = null;
-				Transaction tx = null;
-				Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-				try {
-					tx = session.getTransaction();
-					Criteria c = session.createCriteria(Reveal.class);
-					c.add(Restrictions.eq("old",false));
-					int i=0;
-					while (i<6 && request.getParameter("condField"+i) != null) {
-						Object value = null;
-						
-						// lame way of finding out what type to use :/
-						if (getString("condField"+i).matches("level") || getString("condField"+i).matches(".*Skill")) {
-							value = getInt("condValue"+i);
-						} else {
-							System.out.println(getString("condField"+i)+" didn't match");
-							value = getString("condValue"+i);
-						}
-						
-						if (getString("condition"+i).equals("like")) {
-							if (value instanceof String)
-								c.add(Restrictions.ilike(getString("condField"+i), value));
-							else
-								c.add(Restrictions.eq(getString("condField"+i), value));
-						} else if (getString("condition"+i).equals("notlike")) {
-							if (value instanceof String)
-								c.add(Restrictions.not(Restrictions.ilike(getString("condField"+i), value)));
-							else
-								c.add(Restrictions.ne(getString("condField"+i), value));
-						} else if (getString("condition"+i).equals("gt")) {
-							c.add(Restrictions.gt(getString("condField"+i), value));
-						} else if (getString("condition"+i).equals("lt")) {
-							c.add(Restrictions.lt(getString("condField"+i), value));
-						} 
-						i++;
+				
+				
+				Map<Pair<String,Condition>,Object> conditions = new HashMap<Pair<String,Condition>,Object>();
+				
+				for (int i=0; i<6 && request.getParameter("condField"+i) != null; i++) {
+					Object value = null;
+					
+					// lame way of finding out what type to use :/
+					if (getString("condField"+i).matches("level") || getString("condField"+i).matches(".*Skill")) {
+						value = getInt("condValue"+i);
+					} else {
+						System.out.println(getString("condField"+i)+" didn't match");
+						value = getString("condValue"+i);
 					}
-					c.addOrder(Order.desc("time"));
-					c.setMaxResults(100);
-					reveals = c.list();
-				} catch (HibernateException e) {
-					e.printStackTrace();
-					if (tx != null && tx.isActive())
-						tx.rollback();
+
+					conditions.put(
+							new Pair<String,Condition>(
+									getString("condField"+i),
+									Condition.fromString(getString("condition"+i))
+							),
+							value
+					);
 				}
+				
+				List<Reveal> reveals = RevealService.INSTANCE.find(conditions);
 				request.setAttribute("reveal_latest", reveals);
+				
 			} else {
 				publishReavel(null);
 			}
 		} else if (getString("action").equals("reparse") && user.hasAccess(SimConstants.RIGHTS_SITEADMIN) && getInt("id")>0) {
-			Reveal r = (Reveal)Reveal.get(Reveal.class, getInt("id"));
-			r.getCreatures().clear();
-			for (RevealCrit crit : PageParser.parseReveal(r.getUnparsed())) {
-				r.addCreature(crit);
-			}
+			Reveal r = RevealService.INSTANCE.reparse(user, getInt("id"));
 			publishReavel(r);
 		} else if (getString("action").equals("viewold")) {
-			request.setAttribute("reveal_allformage", Reveal.getAllForMage(getString("mage")));
+			request.setAttribute("reveal_allformage",  RevealService.INSTANCE.findByMage(getString("mage")));
+		} else if (getString("action").equals("propagate") && user.hasAccess(SimConstants.RIGHTS_SUPERADMIN)) {
+			RevealService.INSTANCE.propagate(getInt("id"));
 		} else if (getString("mage").length()>0 || getInt("id")>0) {
 			if (getString("action").equals("add")) {
 				Reveal r = Reveal.getRevealByMage(getString("mage"));
@@ -240,14 +132,6 @@ public class RevealDBExtension extends AbstractSimExtension {
 		} else {
 			request.setAttribute("reveal_action","add");
 			request.setAttribute("reveal_message", "no reveal found");
-		}
-	}
-	
-	private void makeOld(String name) {
-		Reveal r = Reveal.getRevealByMage(name);
-		if (r!=null) {
-			r.setOld(true);
-			r.update();
 		}
 	}
 	

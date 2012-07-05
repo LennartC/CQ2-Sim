@@ -176,6 +176,9 @@
 		         - <a href="?page=reveal&action=viewold&mage=<%= r.getName() %>">see old reveals</a>
 		         <c:if test="${zod:hasAccess(user,Constants.RIGHTS_SITEADMIN)}">
 		         - <a href="?page=reveal&action=reparse&id=<%= r.getId() %>">reparse</a>
+		         </c:if>
+		         <c:if test="${zod:hasAccess(user,Constants.RIGHTS_SUPERADMIN)}">
+		         - <a href="?page=reveal&action=propagate&id=<%= r.getId() %>">propagate</a>
 		         </c:if>)
 	        </font></td>
 	    </tr>

@@ -2,14 +2,13 @@ package be.lacerta.cq2.sim.hbn;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
@@ -21,45 +20,38 @@ public class User extends HbnObject implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -2504230279977343746L;
-	int id;
+	private int id;
 
-	String username;
-	String password;
-	long ulvl;
-	boolean disabled;
-	boolean passExpired;
-	boolean hideOnline;
+	private String username;
+	private String password;
+	private long ulvl;
+	private boolean disabled;
+	private boolean passExpired;
+	private boolean hideOnline;
+	private boolean systemUser;
 
-	public boolean isHideOnline() {
-		return hideOnline;
-	}
-
-	public void setHideOnline(boolean hideOnline) {
-		this.hideOnline = hideOnline;
-	}
-
-	Mage mage;
-	int forestSkill;
-	int deathSkill;
-	int airSkill;
-	int earthSkill;
+	private Mage mage;
+	private int forestSkill;
+	private int deathSkill;
+	private int airSkill;
+	private int earthSkill;
 	
-	Date lastseen;
-	String imagepac;
-	String email;
-	String phone;
-	Date birthday;
-	String location;
+	private Date lastseen;
+	private String imagepac;
+	private String email;
+	private String phone;
+	private Date birthday;
+	private String location;
 	
-	UserOrbs userOrbs;
-	UserImage userImage;
+	private UserOrbs userOrbs;
+	private UserImage userImage;
 	
-	String qauth;
-	int travelgain;
-	int raidgain;
-	int raidloss;
+	private String qauth;
+	private int travelgain;
+	private int raidgain;
+	private int raidloss;
 	
-	String ipAddress;
+	private String ipAddress;
 	
 	public User() {
 		setId(-1);
@@ -78,14 +70,13 @@ public class User extends HbnObject implements Serializable {
 			return u;
 		}
 		
-		Transaction tx = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			tx = session.getTransaction();
 			Criteria c = session.createCriteria(User.class);
 			c.add(Restrictions.eq("username", username));
 			c.add(Restrictions.eq("password", StringUtils.encrypt(password)));
 			c.add(Restrictions.ne("disabled", true));
+			@SuppressWarnings("unchecked")
 			List<User> result = c.list();
 			if (result.size() > 0) { 
 				u = result.get(0);
@@ -94,20 +85,17 @@ public class User extends HbnObject implements Serializable {
 			//tx.commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			if (tx != null && tx.isActive())
-				tx.rollback();
 		}
 		return u;
 	}
 	
 	public static User createFromDatabase(String username) {
 		User user = null;
-		Transaction tx = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			tx = session.getTransaction();
 			Criteria c = session.createCriteria(User.class);
 			c.add(Restrictions.eq("username", username));
+			@SuppressWarnings("unchecked")
 			List<User> result = c.list();
 			if (result.size() > 0) { 
 				user = result.get(0);
@@ -116,26 +104,21 @@ public class User extends HbnObject implements Serializable {
 
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			if (tx != null && tx.isActive())
-				tx.rollback();
 		}
 		return user;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static List<User> getUsersByQauth(String qauth) {
 		List<User> users = null;
-		Transaction tx = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			tx = session.getTransaction();
 			Criteria c = session.createCriteria(User.class);
 			c.add(Restrictions.eq("qauth", qauth));
 			users = c.list();
 	
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			if (tx != null && tx.isActive())
-				tx.rollback();
 		}
 		return users;
 	}
@@ -144,44 +127,32 @@ public class User extends HbnObject implements Serializable {
 		return getUsersByMage(Mage.getOrCreateMage(mage));
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static List<User> getUsersByMage(Mage mage) {
 		List<User> users = null;
-		Transaction tx = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			tx = session.getTransaction();
 			Criteria c = session.createCriteria(User.class);
 			c.add(Restrictions.eq("mage", mage));
 			users = c.list();
-	
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			if (tx != null && tx.isActive())
-				tx.rollback();
 		}
 		return users;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static List<User> getUserList() {
-		List<User> users = new Vector<User>();
-		Transaction tx = null;
+		List<User> users = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			tx = session.getTransaction();
 			Criteria c = session.createCriteria(User.class);
 			c.addOrder(Order.asc("username"));
-			
-			for (User u : (List<User>)c.list()) {
-				users.add(u);
-			}
-
-
+			users = (List<User>)c.list();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			if (tx != null && tx.isActive())
-				tx.rollback();
 		}
-		return users;
+		return users==null?new ArrayList<User>():users;
 	}
 	
 	public long getUlvl() {
@@ -318,6 +289,38 @@ public class User extends HbnObject implements Serializable {
 		this.mage = mage;
 	}
 
+	public int getForestSkill() {
+		return forestSkill;
+	}
+
+	public void setForestSkill(int forestSkill) {
+		this.forestSkill = forestSkill;
+	}
+
+	public int getDeathSkill() {
+		return deathSkill;
+	}
+
+	public void setDeathSkill(int deathSkill) {
+		this.deathSkill = deathSkill;
+	}
+
+	public int getAirSkill() {
+		return airSkill;
+	}
+
+	public void setAirSkill(int airSkill) {
+		this.airSkill = airSkill;
+	}
+
+	public int getEarthSkill() {
+		return earthSkill;
+	}
+
+	public void setEarthSkill(int earthSkill) {
+		this.earthSkill = earthSkill;
+	}
+
 	public String getEmail() {
 		return email==null?"":email;
 	}
@@ -403,38 +406,6 @@ public class User extends HbnObject implements Serializable {
 
 	public void setRaidloss(int raidloss) {
 		this.raidloss = raidloss;
-	}	
-
-	public int getForestSkill() {
-		return forestSkill;
-	}
-
-	public void setForestSkill(int forestSkill) {
-		this.forestSkill = forestSkill;
-	}
-
-	public int getDeathSkill() {
-		return deathSkill;
-	}
-
-	public void setDeathSkill(int deathSkill) {
-		this.deathSkill = deathSkill;
-	}
-
-	public int getAirSkill() {
-		return airSkill;
-	}
-
-	public void setAirSkill(int airSkill) {
-		this.airSkill = airSkill;
-	}
-
-	public int getEarthSkill() {
-		return earthSkill;
-	}
-
-	public void setEarthSkill(int earthSkill) {
-		this.earthSkill = earthSkill;
 	}
 
 	public Date getBirthday() {
@@ -509,5 +480,21 @@ public class User extends HbnObject implements Serializable {
 	public void setUserImage(UserImage userImage) {
 		this.userImage = userImage;
 	}
-	
+
+
+	public boolean isHideOnline() {
+		return hideOnline;
+	}
+
+	public void setHideOnline(boolean hideOnline) {
+		this.hideOnline = hideOnline;
+	}
+
+	public boolean isSystemUser() {
+		return systemUser;
+	}
+
+	public void setSystemUser(boolean systemUser) {
+		this.systemUser = systemUser;
+	}
 }

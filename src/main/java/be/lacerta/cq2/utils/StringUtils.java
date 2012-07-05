@@ -220,7 +220,7 @@ public class StringUtils {
 		tags.put(new Tag("[purple]","<font color=\"purple\">"), new Tag("[/purple]","</font>"));
 		tags.put(new Tag("[sea]","<font color=\"#008080\">"), new Tag("[/sea]","</font>"));
 		tags.put(new Tag("[cyan]","<font color=\"#00FFFF\">"), new Tag("[/cyan]","</font>"));
-		tags.put(new Tag("[yellow]","<font color=\"#FF00FF\">"), new Tag("[/yellow*","</font>"));
+		tags.put(new Tag("[yellow]","<font color=\"#FF00FF\">"), new Tag("[/yellow]","</font>"));
 		tags.put(new Tag("[quote]",
 						 "<table width=\"90%\" align=\"center\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\"><tr><td><hr size=\"1\" class=\"line\"></td></tr><tr><td><i>"),
 				 new Tag("[/quote]",

@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Dependencies: org.hibernate, javax.persistence.api
-Build-Jdk: 1.7.0_05
-Built-By: lennart
-Created-By: Maven Integration for Eclipse
-

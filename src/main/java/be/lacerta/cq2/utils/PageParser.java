@@ -612,7 +612,7 @@ public class PageParser {
 				}
 
 				if (!found) {
-					pattern = Pattern.compile("You managed to steal (\\d*)% from the arcane chamber of your opponent and convert it into a (.*) G");
+					pattern = Pattern.compile("You managed to steal (\\d*)% from the arcane chamber of your opponent and convert it into a (.*)[.]");
 					match = pattern.matcher(text);
 					if (match.find()) {
 						found = true;

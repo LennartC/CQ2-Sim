@@ -162,7 +162,7 @@ public class SimServlet extends HttpServlet {
 			u = User.createFromDatabase(request.getParameter("username"),request.getParameter("password"));
 		}
 		
-		if (u != null) {
+		if (u != null && !u.isSystemUser()) {
 			u.setIpAddress(request.getRemoteAddr());
     		u.setLastseen(new Date());
     		u.update();

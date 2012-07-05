@@ -4,12 +4,16 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     version="2.4">
 	<display-name>zod</display-name>
+
     <listener>
         <listener-class>be.lacerta.cq2.sim.hbn.HibernateListener</listener-class>
     </listener>
     <listener>
         <listener-class>be.lacerta.cq2.utils.SessionListener</listener-class>
     </listener>
+<!--     <listener> -->
+<!--         <listener-class>be.lacerta.cq2.sim.messaging.TopicContextListener</listener-class> -->
+<!--     </listener> -->
     
    	<filter>
         <filter-name>RealIPFilter</filter-name>
@@ -156,6 +160,10 @@
         <init-param>
             <param-name>page.itherian</param-name>
             <param-value>be.lacerta.cq2.sim.ItherianExtension</param-value>
+        </init-param>
+        <init-param>
+            <param-name>page.defenseparser</param-name>
+            <param-value>be.lacerta.cq2.sim.DefenseParserExtension</param-value>
         </init-param>
 	</servlet>
 <!-- 	<servlet> -->

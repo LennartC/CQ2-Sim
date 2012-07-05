@@ -13,6 +13,7 @@ public class SimConstants extends JSTLConstants {
 	public final static long RIGHTS_SUPPORTADMIN = 13;
 	public final static long RIGHTS_TEK = 17;
 	public final static long RIGHTS_NEXT_AGE = 19;
+	public final static long RIGHTS_QUEUE = 23;
 	public final static long RIGHTS_SUPERADMIN = 7420738134810L;
 	
 	

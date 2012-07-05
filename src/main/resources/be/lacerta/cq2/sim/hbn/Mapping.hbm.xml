@@ -32,6 +32,7 @@
         <one-to-one name="userOrbs" class="be.lacerta.cq2.sim.hbn.UserOrbs" cascade="all" />
         <one-to-one name="userImage" class="be.lacerta.cq2.sim.hbn.UserImage" cascade="all" />
         <property name="hideOnline" column="hideOnline" type="boolean"/>
+        <property name="systemUser" column="systemUser" type="boolean"/>
   </class>
   <class name="be.lacerta.cq2.sim.hbn.Topic" table="sim_topic" dynamic-insert="true">
      <meta attribute="extends">HbnObject</meta>
@@ -434,4 +435,12 @@
       </composite-id>
       <property name="level" column="level" type="string"/>
     </class>
+    
+   <class name="be.lacerta.cq2.sim.hbn.Configuration" table="sim_configuration" dynamic-insert="true">
+     <meta attribute="extends">HbnObject</meta>
+     <id name="key" column="key" type="string">
+            <generator class="assigned" />
+     </id>
+     <property name="value" column="value" type="string" />
+   </class>
 </hibernate-mapping>

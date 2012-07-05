@@ -164,6 +164,7 @@
         <a href="?page=powerspell" title="Powerspell" accesskey="p" class="menu">Powerspells</a><br/>
         <a href="?page=support" title="Support" accesskey="s" class="menu"><b>Support</b></a><br/>
         <a href="?page=shard" title="Shard support" class="menu">Shard support</a><br/>
+        <a href="?page=defenseparser" title="DefenseParser" class="menu">Defense Parser</a><br/>
         </td>
         </tr>
            
