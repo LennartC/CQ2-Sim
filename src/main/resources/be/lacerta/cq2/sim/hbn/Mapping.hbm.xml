@@ -434,10 +434,6 @@
       </composite-id>
       <property name="level" column="level" type="string"/>
     </class>
-    
-    
-<!-- HIER BEGIN IK MET MIJN ITH TABEL -->
-
     <class name="be.lacerta.cq2.sim.hbn.Itherian" table="sim_itherian" dynamic-insert="true">
      <meta attribute="extends">HbnObject</meta>
       <id name="id" column="id" type="integer">
@@ -446,19 +442,16 @@
       <many-to-one name="user" class="be.lacerta.cq2.sim.hbn.User" column="userID"/>
       <property name="cq2ID" column="cq2ID" type="integer" />
       <property name="itemname" column="itemname" type="string" />
-    </class>
-       
-
-<class name="be.lacerta.cq2.sim.hbn.Sacrifices" table="sim_sacrifices" dynamic-insert="true">
+    </class> 
+    <class name="be.lacerta.cq2.sim.hbn.Sacrifices" table="sim_sacrifices" dynamic-insert="true">
      <meta attribute="extends">HbnObject</meta>
       <id name="id" column="id" type="integer">
          <generator class="increment"/>
       </id>
       <many-to-one name="itemID" class="be.lacerta.cq2.sim.hbn.Itherian" column="itemID"/>
       <many-to-one name="crit" class="be.lacerta.cq2.sim.hbn.Creature" column="creatureID"/>
-      </class>
-      
-      <class name="be.lacerta.cq2.sim.hbn.Orbs" table="sim_orbs" dynamic-insert="true">
+    </class>
+    <class name="be.lacerta.cq2.sim.hbn.Orbs" table="sim_orbs" dynamic-insert="true">
      <meta attribute="extends">HbnObject</meta>
       <id name="id" column="id" type="integer">
          <generator class="increment"/>
@@ -467,14 +460,5 @@
       <property name="cq2ID" column="cq2ID" type="integer" />
       <property name="name" column="name" type="string" />
       <property name="tokens" column="tokens" type="string" />
-      </class>
-<!--     <class name="be.lacerta.cq2.sim.hbn.Sacrifices" table="sim_sacrifices" dynamic-insert="true"> -->
-<!--      <meta attribute="extends">HbnObject</meta> -->
-<!--       <id name="id" column="id" type="integer"> -->
-<!--          <generator class="increment"/> -->
-<!--       </id> -->
-<!--       <many-to-one name="itemID" class="be.lacerta.cq2.sim.hbn.Itherian" column="id"/> -->
-<!--       <property name="critname" column="critname" type="string" /> -->
-<!--       <property name="useLevel" column="useLevel" type="integer" /> -->
-<!--     </class> -->
+     </class>
 </hibernate-mapping>
