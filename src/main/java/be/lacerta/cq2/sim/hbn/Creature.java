@@ -316,22 +316,6 @@ public class Creature extends HbnObject implements Amulet, java.io.Serializable{
 		return result;
 	}
 	
-	public int maxLevel(String classValue, Creature crit){
-		double classMultiplier;
-		int userLevel = 1;
-		double compareValue = userLevel*5.5 -60;
-		
-		if(classValue.equals("Main class")){
-			classMultiplier = 1;
-		}
-		else classMultiplier = 1.5;
-		
-		//crit uselvl *1(.5) > own lvl*5.5 -60
-		while (crit.getSkill()>compareValue){
-			userLevel++;
-			compareValue = userLevel*5.5 -60;
-		}
-		return userLevel;
-	}
+
 
 }

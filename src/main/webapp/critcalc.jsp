@@ -83,8 +83,39 @@
         </table>
         </form>
 
+			<table width="100%">
+				<tr>
+					<td class="titleline" width="100%"><font class="head"
+						size="-1">Creature level calculator</font></td>
+				</tr>
+			</table>
 
-</div>
+			<zod:AutoCompleteJS type="amulet" />
+
+			<form method="post" action="?page=critdb">
+				<input type="hidden" name="action" value="levelcalc" />
+
+        <table style="width: 200px">
+
+        <tr><td>Creature:</td>
+        <td><zod:AutoInput type="amulet" name="ammy" value="" size="40" /></td></tr>
+        <tr><td>Classtype:</td>
+        <td>
+<select name="class" class="input">
+                    <option>Main class</option>
+                    <option>Second class</option>
+                </select> 
+</td></tr>
+        </table>
+
+				<br/><input type="submit" value="Submit" class="input" /> <br />
+				<br />
+
+				<%= request.getAttribute("result")  %>
+			</form>
+
+
+		</div>
 
 </c:otherwise>
 </c:choose>

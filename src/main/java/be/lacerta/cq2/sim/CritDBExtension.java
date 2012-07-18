@@ -19,6 +19,7 @@ public class CritDBExtension extends AbstractSimExtension {
 	public void run(String page) {
 		String action = request.getParameter("action");
 		request.setAttribute("action", action);
+		request.setAttribute("result", " ");
 		
 		if (action == null || action.equals("")) {
 			if (StringUtils.isInteger(request.getParameter("race"))) {
@@ -33,6 +34,7 @@ public class CritDBExtension extends AbstractSimExtension {
 		else if (action.equals("critlist")) doCritList();
 		else if (action.equals("itemlist")) doItemList();
 		else if (action.equals("costcalc")) doCostCalc();
+		else if (action.equals("levelcalc")) doMaxLevelCalc();
 		else if (action.equals("summoncalc")) doSummonChanceCalc();
 		else setPath("/main.jsp");
 		
@@ -158,5 +160,25 @@ public class CritDBExtension extends AbstractSimExtension {
 		setPath("/critcalc.jsp");
 	}
 	
+	public void doMaxLevelCalc(){
+		double classMultiplier;
+		int userLevel = 1;
+		double compareValue = userLevel*5.5 -60;
+		
+		if(request.getParameter("class").equals("Main class")){
+			classMultiplier = 1;
+		}
+		else classMultiplier = 1.5;
+		
+		Creature crit = Creature.getCreature(request.getParameter("ammy"));
+	
+		while (crit.getSkill()*classMultiplier>compareValue){
+			userLevel++;
+			compareValue = userLevel*5.5 -60;
+		}
 
+		request.setAttribute("result", "The maximum magelevel to use a(n) " + crit.getName() + ", in your " + request.getParameter("class").toLowerCase() + ", is " + (userLevel-1) + ".");
+		
+		setPath("/critcalc.jsp");
+	}
 }

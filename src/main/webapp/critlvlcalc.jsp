@@ -21,7 +21,7 @@
 
 <zod:AutoCompleteJS type="amulet" />
 
-        <form method="post" action="?page=critlvcalc&action=calc">
+        <form method="post" action="?page=critlvlcalc&action=calc">
 <!--         <input type="hidden" name="action" value="critcalc"/> -->
        <!--  <table style="width: 200px"> -->
         
