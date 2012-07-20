@@ -776,21 +776,6 @@ CREATE TABLE `sim_sacrifices` (
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `sim_ith`
---
-
-DROP TABLE IF EXISTS `sim_itherian`;
-CREATE TABLE `sim_itherian` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cq2ID` int(11) NOT NULL,
-  `itemname` varchar(150) CHARACTER SET latin1 NOT NULL,
-  `userID` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `userID_fk` (`userID`),
-  CONSTRAINT `userID_fk` FOREIGN KEY (`userID`) REFERENCES `sim_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
-
---
 -- Table structure for table `sim_orbs`
 --
 
@@ -806,6 +791,24 @@ CREATE TABLE `sim_orbs` (
   KEY `itherianID_fk` (`itherianID`),
   CONSTRAINT `itherianID_fk` FOREIGN KEY (`itherianID`) REFERENCES `sim_itherian` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Table structure for table `sim_ith`
+--
+
+DROP TABLE IF EXISTS `sim_itherian`;
+CREATE TABLE `sim_itherian` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cq2ID` int(11) NOT NULL,
+  `itemname` varchar(150) CHARACTER SET latin1 NOT NULL,
+  `userID` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cq2ID` (`cq2ID`),
+  KEY `userID_fk` (`userID`),
+  CONSTRAINT `userID_fk` FOREIGN KEY (`userID`) REFERENCES `sim_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+
+
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
