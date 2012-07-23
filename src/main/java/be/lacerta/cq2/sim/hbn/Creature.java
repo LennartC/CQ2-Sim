@@ -315,5 +315,7 @@ public class Creature extends HbnObject implements Amulet, java.io.Serializable{
 		}
 		return result;
 	}
+	
+
 
 }
