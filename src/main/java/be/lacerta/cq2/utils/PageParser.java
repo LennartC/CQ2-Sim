@@ -146,8 +146,10 @@ public class PageParser {
 				);
 		Matcher match = pattern.matcher(page);
 		if (match.find()) {
-			user.setCq2class(match.group(1));
-			user.setLevel(Integer.parseInt(match.group(2)));
+			if (user.getMage()!=null) {
+				user.getMage().setCq2class(match.group(1));
+				user.getMage().setLevel(Integer.parseInt(match.group(2)));
+			}
 			user.setForestSkill(Integer.parseInt(match.group(4)));
 			user.setDeathSkill(Integer.parseInt(match.group(5)));
 			user.setAirSkill(Integer.parseInt(match.group(6)));

@@ -9,7 +9,6 @@ import java.util.StringTokenizer;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import be.lacerta.cq2.objects.Enchant;
 import be.lacerta.cq2.objects.Gem;

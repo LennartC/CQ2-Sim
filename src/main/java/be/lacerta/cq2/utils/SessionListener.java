@@ -1,7 +1,6 @@
 package be.lacerta.cq2.utils;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -9,10 +8,6 @@ import java.util.Vector;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
-
-//import org.apache.axis2.context.ServiceContext;
-//import org.apache.axis2.context.ServiceGroupContext;
-//import org.apache.axis2.context.SessionContext;
 
 import be.lacerta.cq2.objects.Creature;
 import be.lacerta.cq2.sim.hbn.User;

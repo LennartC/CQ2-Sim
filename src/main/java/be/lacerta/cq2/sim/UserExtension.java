@@ -1,10 +1,8 @@
 package be.lacerta.cq2.sim;
 
-import java.util.Date;
 import java.util.List;
 
 import be.lacerta.cq2.sim.hbn.Mage;
-import be.lacerta.cq2.sim.hbn.Support;
 import be.lacerta.cq2.sim.hbn.User;
 import be.lacerta.cq2.sim.hbn.UserImage;
 import be.lacerta.cq2.utils.PageParser;

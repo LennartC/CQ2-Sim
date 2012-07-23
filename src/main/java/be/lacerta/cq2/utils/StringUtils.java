@@ -95,9 +95,9 @@ public class StringUtils {
 		if(u.getMage().getName().length()>0) link += u.getMage();
 		else link += u.getUsername();
 		link += ", L";
-		link += u.getLevel();
+		link += u.getMage().getLevel();
 		link += ", ";
-		link += u.getCq2class();
+		link += u.getMage().getCq2class();
 		link += ")";
 		//link += "</a>";
 		return link;

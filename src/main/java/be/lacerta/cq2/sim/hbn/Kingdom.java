@@ -85,6 +85,26 @@ public class Kingdom extends HbnObject implements java.io.Serializable {
 		c.setMaxResults(1);
 		return (Kingdom)c.uniqueResult();
 	}
+	
+	public static Kingdom getOrCreateKingdom(String name) {
+		Kingdom kingdom = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			Criteria c = session.createCriteria(Kingdom.class);
+			c.add(Restrictions.ilike("name", name));
+			@SuppressWarnings("unchecked")
+			List<Kingdom> results = c.list();
+			if (results != null && results.size() > 0) {
+				kingdom = results.get(0);
+			} else {
+				kingdom = new Kingdom(name,1,null);
+			}
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return kingdom;
+	}
 
 	/** custom functions **/
 	public void addInhabitant(Mage mage) {

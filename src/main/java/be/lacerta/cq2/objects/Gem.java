@@ -78,17 +78,12 @@ public class Gem implements Comparable<Gem> {
 	public final static double MAX_BIRTHSIGN_RARITY = 5000;
 	public final static double RUDOLF_POWER_MULTIPLIER = 40;
 	
-	public final static HashMap<String,Integer> gemrarity = new HashMap<String,Integer>(){/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-
-	{
+	public final static HashMap<String,Integer> gemrarity = new HashMap<String,Integer>(){{
 		// TRAVEL
 		put("efis", 18); 	// 28.0
 		put("aner", 17); 	// 29.647
 		put("asih", 15); 	// 33.6
-		put("qulah", 13); // 38.7695
+		put("qulah", 13); 	// 38.7695
 		put("nefar", 11); 	// 45.818
 		put("zaneh", 9);	// 56.0
 		put("faerh", 7);	// 72.0

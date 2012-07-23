@@ -69,6 +69,7 @@ public class Quadruplet<A,B,C,D> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		@SuppressWarnings("rawtypes")
 		Quadruplet other = (Quadruplet) obj;
 		if (first == null) {
 			if (other.first != null)
