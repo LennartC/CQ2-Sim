@@ -7,7 +7,7 @@
 <!--     <property name="connection.datasource">java:jboss/datasources/SimONNDS</property> -->
 <!--     <property name="connection.datasource">java:jboss/datasources/SimZoDDS</property> -->
 <!--     <property name="connection.datasource">java:jboss/datasources/SimHecateDS</property> -->
-    <property name="connection.datasource">java:jboss/datasources/SimDS</property>
+    <property name="connection.datasource">java:jboss/datasources/SimMyrilliaDS</property>
     <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="current_session_context_class">thread</property>
     <property name="hibernate.show_sql">false</property>

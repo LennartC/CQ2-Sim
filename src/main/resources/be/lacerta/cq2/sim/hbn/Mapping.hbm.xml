@@ -435,8 +435,6 @@
       </composite-id>
       <property name="level" column="level" type="string"/>
     </class>
-<<<<<<< HEAD
-    
    <class name="be.lacerta.cq2.sim.hbn.Configuration" table="sim_configuration" dynamic-insert="true">
      <meta attribute="extends">HbnObject</meta>
      <id name="key" column="key" type="string">
@@ -444,7 +442,6 @@
      </id>
      <property name="value" column="value" type="string" />
    </class>
-=======
     <class name="be.lacerta.cq2.sim.hbn.Itherian" table="sim_itherian" dynamic-insert="true">
      <meta attribute="extends">HbnObject</meta>
       <id name="id" column="id" type="integer">
@@ -472,5 +469,4 @@
       <property name="name" column="name" type="string" />
       <property name="tokens" column="tokens" type="string" />
      </class>
->>>>>>> looney/master
 </hibernate-mapping>

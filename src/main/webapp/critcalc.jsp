@@ -86,7 +86,7 @@
 			<table width="100%">
 				<tr>
 					<td class="titleline" width="100%"><font class="head"
-						size="-1">Creature level calculator</font></td>
+						size="-1">Max usage level calculator</font></td>
 				</tr>
 			</table>
 
@@ -105,11 +105,9 @@
                     <option>Main class</option>
                     <option>Second class</option>
                 </select> 
-</td></tr>
+		</td></tr>
+		<tr><td></td><td><input type="submit" value="Submit" class="input" /></td></tr>
         </table>
-
-				<br/><input type="submit" value="Submit" class="input" /> <br />
-				<br />
 
 				<%= request.getAttribute("result")  %>
 			</form>
