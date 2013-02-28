@@ -1,6 +1,6 @@
 CQ2 Sim
 =======
-Simulator/Database for the for the free web-browser game Castle Quest 2.
+Simulator/Database for the free web-browser game Castle Quest 2.
 
 Created by:
 * Lennart Coopmans
@@ -38,7 +38,7 @@ Make sure the DataSource used in src/main/resource/be/lacerta/cq2/sim/hbn/hibern
 
 Compilation
 --------
-CQ2 Sim uses Maven, so compiling is (or should be) as easy as executing the following command in the base directory of CQ2 Sim:
+CQ2 Sim uses Maven, so compiling it is (or should be) as easy as executing the following command in the base directory of CQ2 Sim:
 
 	mvn package
 	
