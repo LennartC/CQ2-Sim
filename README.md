@@ -4,12 +4,12 @@ Simulator/Database for the free web-browser game Castle Quest 2.
 
 Created by:
 * Lennart Coopmans
-* Robbin Pellegrims
+* Robin Pellegrims
 
 LICENSE
 =======
 "THE WHISKY-WARE LICENSE" (Revision 1):
-Lennart Coopmans and Robbin Pellegrims wrote these files. As long as you
+Lennart Coopmans and Robin Pellegrims wrote these files. As long as you
 retain this notice you can do whatever you want with this stuff. If we meet
 some day, and you think this stuff is worth it, you can buy me a whisky in
 return.
